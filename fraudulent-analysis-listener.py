@@ -54,21 +54,7 @@ try:
         try:
             fraudulent_analysis = message.value
             fraudulent_analysis['is_fraud'] = fraudulent_analysis['is_fraud'] == 1
-            analysis_id = save_fraudulent_analysis_into_pg(fraudulent_analysis)
-
-            fraudulent_analysis['analysis_id'] = analysis_id
-
-            # Returning it back, lazy Ivan
-            fraudulent_analysis['is_fraud'] = 1 if fraudulent_analysis['is_fraud'] else 0
-
-            producer.publish_message('fraudulent_analysis', fraudulent_analysis)
-
-            # influx.write_into_influx('transactions', 'fraudulent_analysis', fraudulent_analysis,
-            #                          {
-            #                              'user_id': fraudulent_analysis['user_id'],
-            #                              'status': 'Fraud' if fraudulent_analysis['is_fraud'] == 1 else 'Normal'
-            #                          })
-
+            save_fraudulent_analysis_into_pg(fraudulent_analysis)
         except Exception as e:
             print(f"An error occurred: {e}")
 finally:

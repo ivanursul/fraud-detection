@@ -15,20 +15,6 @@ df.describe()
 feature_names = df.iloc[:, 2:31].columns
 
 
-# def json_serializer(data):
-#     return json.dumps(data).encode('utf-8')
-#
-#
-# def publish_message(topic_name, value):
-#     producer.send(topic_name, value)
-#     producer.flush()
-#
-#
-# producer = KafkaProducer(
-#     bootstrap_servers=['localhost:9093'],  # Update the port if your Kafka runs on a different one
-#     value_serializer=json_serializer
-# )
-
 # Coefficient to scale the time differences
 # For example, if your times are in tenths of a second, and you want to simulate
 # one-tenth of a second as one second, you could set this to 10.
